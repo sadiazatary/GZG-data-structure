@@ -1,0 +1,51 @@
+class Node {
+  int data;
+  Node? next;
+
+  Node(this.data);
+}
+
+class LinkedList {
+  Node? head;
+
+  void add(int data) {
+    Node newNode = Node(data);
+    if (head == null) {
+      head = newNode;
+    } else {
+      Node? current = head;
+      while (current!.next != null) {
+        current = current.next;
+      }
+      current.next = newNode;
+    }
+  }
+
+  void printList() {
+    Node? current = head;
+    while (current != null) {
+      print(current.data);
+      current = current.next;
+    }
+  }
+}
+
+void printListInReverse(Node? node) {
+  if (node == null) return;
+
+  printListInReverse(node.next);
+  print(node.data);
+}
+
+void main() {
+  LinkedList list = LinkedList();
+  list.add(1);
+  list.add(2);
+  list.add(3);
+  list.add(4);
+
+  print("Original List:");
+  list.printList();
+  print("List in Reverse:");
+  printListInReverse(list.head);
+}
